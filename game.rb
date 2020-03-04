@@ -13,6 +13,12 @@ def add_letter(letter)
 
 end
 
+def hiddenword_letter_count(word)
+  word = word.split("")
+  return word.uniq.length()
+end
+
+
 # def remove_life(player)
 #   lives = lives - 1
 # end
@@ -26,5 +32,29 @@ def incorrect_guess(game)
   return game.player.lives
 end
 
+def correct_guess(game)
+  correct_guesses = 0
+  for letter in game.guessed_letters
+    if game.hiddenword.word.split("").include?(letter)
+      correct_guesses += 1
+    end
+  end
+  return correct_guesses
+end
 
+def game_outcome(game)
+  if incorrect_guess(game) == 0
+    result =  "You lose"
+  elsif correct_guess(game) == hiddenword_letter_count(game.hiddenword.word) && incorrect_guess(game) > 0
+    result = "You win"
+end
+return result
+end
+#
+# def outcome(game)
+#   incorrect_guess(game)
+#
+#
+#
+#
   end

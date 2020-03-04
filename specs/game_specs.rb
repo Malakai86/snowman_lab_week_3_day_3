@@ -8,7 +8,7 @@ class TestGame < MiniTest::Test
 
   def setup()
     @player = Player.new("Eugene")
-    @hiddenword = HiddenWord.new("cat")
+    @hiddenword = HiddenWord.new("catt")
     @game = Game.new(@player, @hiddenword, [])
 
   end
@@ -32,12 +32,38 @@ def test_player_incorrect_guess()
   assert_equal(4, @player.lives)
 end
 
-def test_outcome__player_win()
-  @game.add_letter("r")
-  @game.add_letter("c")
-  @game.add_letter("a")
-  @game.add_letter("t")
-  assert_equal("Game lost", outcome())
+def test_hiddenword_letter_count()
+  result = @game.hiddenword_letter_count(@game.hiddenword.word)
+  assert_equal(3, result)
 end
 
+def test_correct_guess()
+  @game.add_letter("r")
+  @game.add_letter("c")
+  @game.add_letter("y")
+  result = @game.correct_guess(@game)
+  assert_equal(1, result)
+end
+
+def test_game_outcome__lose()
+  @game.add_letter("r")
+  @game.add_letter("w")
+  @game.add_letter("q")
+  @game.add_letter("s")
+  @game.add_letter("z")
+  @game.add_letter("h")
+  result = @game.game_outcome(@game)
+  assert_equal("You lose", result)
+end
+
+def test_game_outcome__win()
+  @game.add_letter("c")
+  @game.add_letter("w")
+  @game.add_letter("a")
+  @game.add_letter("s")
+  @game.add_letter("z")
+  @game.add_letter("t")
+  result = @game.game_outcome(@game)
+  assert_equal("You win", result)
+end
 end
