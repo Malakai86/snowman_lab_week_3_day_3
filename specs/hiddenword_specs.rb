@@ -31,8 +31,8 @@ end
 
 def test_word_sub()
 word = @hiddenword.turn_word_to_array(@game.hiddenword)
-  @hiddenword.word_sub(word)
-  assert_equal("***", @hiddenword.display)
+  @hiddenword.word_sub(word, @game.guessed_letters)
+  assert_equal("**t", @hiddenword.display)
 end
 
 def test_turn_word_to_array()

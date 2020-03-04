@@ -29,8 +29,18 @@ def word_to_display(length)
     return word
   end
 
-def word_sub(word)
-  unguessed_letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  def get_unguessed_letters(guesses)
+    unguessed_letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    for letter in guesses
+      if unguessed_letters.include?(letter)
+        unguessed_letters.delete(letter)
+      end
+    end
+    return unguessed_letters
+  end
+
+def word_sub(word, guesses)
+  unguessed_letters = get_unguessed_letters(guesses)
   for letter in word
     if unguessed_letters.include?(letter)
       word = word.join("")
