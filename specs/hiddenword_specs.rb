@@ -23,12 +23,6 @@ def test_is_letter_correct
   assert_equal(true, result)
 end
 
-def test_word_to_display__no_guesses
-  length = @game.hiddenword.length()
-  @hiddenword.word_to_display(length)
-  assert_equal("***", @hiddenword.display)
-end
-
 def test_word_sub()
 word = @hiddenword.turn_word_to_array(@game.hiddenword)
   @hiddenword.word_sub(word, @game.guessed_letters)
@@ -40,11 +34,6 @@ def test_turn_word_to_array()
   assert_equal(["c","a", "t"], result)
 end
 
-# def test_word_to_display__no_guesses
-#   length = @hiddenword.word.length()
-#   @hiddenword.word_to_display(length)
-#   assert_equal("***********", @hiddenword.display)
-# end
 
 
 end

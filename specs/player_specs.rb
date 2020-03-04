@@ -14,5 +14,9 @@ def test_player_name
   assert_equal("Eugene", @player.name)
 end
 
+def test_player_loss_life
+  @player.remove_life()
+  assert_equal(5, @player.lives)
+end
 
 end
